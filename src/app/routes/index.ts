@@ -8,6 +8,6 @@ const moduleRoutes: Array<{ path: string; router: Router }> = [
   //   },
 ];
 
-moduleRoutes.forEach((route) => {
+moduleRoutes.forEach(route => {
   appRoutes.use(route.path, route.router);
 });
