@@ -1,6 +1,7 @@
 import express, { type Application } from 'express';
 import cors from 'cors';
 import { appRoutes } from './app/routes';
+import { notFound } from './app/middleware/notFound';
 
 const app: Application = express();
 
@@ -17,22 +18,22 @@ app.use(
       }
     },
     credentials: true,
-  }),
+  })
 );
 // app.use(cookieParser());
 
 // ----- root route ----- //
 app.get('/', (_, res) => {
-  res.send({ message: 'Accord AI server is running...' });
+  res.send({ message: 'DailyOS server is running...' });
 });
 
 // --- routes --- //
-app.use('/api', appRoutes);
+app.use('/api/v1', appRoutes);
 
 // ----- global error handler ----- //
 // app.use(globalErrorHandler);
 
 // ----- API not found handler ----- //
-// app.use(notFound);
+app.use(notFound);
 
 export default app;

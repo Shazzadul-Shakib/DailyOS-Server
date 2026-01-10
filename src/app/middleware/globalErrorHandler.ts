@@ -7,7 +7,12 @@ import { config } from '../config';
 import { handleZodError } from '../errors/zodErrorHandler';
 import { handleDuplicateError } from '../errors/duplicateErrorHandler';
 
-export const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
+export const globalErrorHandler: ErrorRequestHandler = (
+  err,
+  _req,
+  res,
+  _next
+) => {
   let statusCode = 500;
   let message = err.message || 'Something went wrong!';
   let error: TError = [{ path: '', message }];
