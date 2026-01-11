@@ -31,14 +31,7 @@ export const globalErrorHandler: ErrorRequestHandler = (
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
     error = simplifiedError?.error;
-  }
-  //    else if (err?.name === 'ValidationError') {
-  //     const simplifiedError = handleValidationError(err);
-  //     statusCode = simplifiedError?.statusCode;
-  //     message = simplifiedError?.message;
-  //     error = simplifiedError?.error;
-  //   }
-  else if (err?.code === 11000) {
+  } else if (err?.code === 'P2002') {
     const simplifiedError = handleDuplicateError(err);
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
