@@ -1,7 +1,7 @@
 import { Server } from 'http';
 import { prisma } from './app/config/db';
 import app from './app';
-import { config } from './app/config';
+import { envConfig } from './app/config';
 
 let server: Server;
 
@@ -19,8 +19,8 @@ const connectToDB = async () => {
 const main = async () => {
   await connectToDB();
 
-  server = app.listen(config.PORT, () => {
-    console.log(`Server is running to the port ${config.PORT}`);
+  server = app.listen(envConfig.PORT, () => {
+    console.log(`Server is running to the port ${envConfig.PORT}`);
   });
 };
 
