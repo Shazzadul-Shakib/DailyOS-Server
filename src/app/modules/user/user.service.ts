@@ -19,6 +19,15 @@ const registerUser = async (user: IUser) => {
   return result;
 };
 
+const getAllUsers = async () => {
+  return await prisma.user.findMany({
+    omit: {
+      password: true,
+    },
+  });
+};
+
 export const userService = {
   registerUser,
+  getAllUsers,
 };
