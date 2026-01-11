@@ -13,6 +13,7 @@ const createUserValidationSchema = z.object({
       message: 'Password is required',
     }),
     image: z.string().optional(),
+    role: z.string().optional(),
     accountType: z
       .enum(Object.values(AccounType) as [AccounType, ...AccounType[]])
       .optional(),
