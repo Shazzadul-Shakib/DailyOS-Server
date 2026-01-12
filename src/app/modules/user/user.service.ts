@@ -6,6 +6,7 @@ import { IUser } from './user.interface';
 import { comparePassword, hashPassword } from './utils/hashPassword';
 import httpStatus from 'http-status';
 import { createToken } from './utils/token';
+import { TCredentialsLoginPayload } from './user.validation';
 
 // ----- Register a new user ----- //
 const registerUser = async (user: IUser) => {
@@ -63,16 +64,7 @@ const credentialsLogin = async (payload: Prisma.UserWhereUniqueInput) => {
   };
 };
 
-const getAllUsers = async () => {
-  return await prisma.user.findMany({
-    omit: {
-      password: true,
-    },
-  });
-};
-
 export const userService = {
   registerUser,
   credentialsLogin,
-  getAllUsers,
 };

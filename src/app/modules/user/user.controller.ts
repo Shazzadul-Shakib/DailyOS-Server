@@ -6,6 +6,7 @@ import { IUser } from './user.interface';
 import { Request, Response } from 'express';
 import { setCookie } from './utils/setCookie';
 import { envConfig } from '../../config';
+import { TCredentialsLoginPayload, UserValidation } from './user.validation';
 
 // ----- Register a new user ----- //
 const registerUser = catchAsync(async (req, res) => {
@@ -22,7 +23,8 @@ const registerUser = catchAsync(async (req, res) => {
 
 //--------------- LOGIN -------------------//
 const credentialsLogin = catchAsync(async (req: Request, res: Response) => {
-  const result = await userService.credentialsLogin(req.body);
+  const credentialUser: TCredentialsLoginPayload = req.body;
+  const result = await userService.credentialsLogin(credentialUser);
 
   setCookie(res, result.userToken);
 
@@ -56,21 +58,8 @@ const logout = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-//-------------------- FETCH ALL USER ----------------//
-const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-  const result = await userService.getAllUsers();
-
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Users Retrieved Successfully',
-    data: result,
-  });
-});
-
 export const userController = {
   registerUser,
   credentialsLogin,
   logout,
-  getAllUsers,
 };
