@@ -10,7 +10,8 @@
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "migrate": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",

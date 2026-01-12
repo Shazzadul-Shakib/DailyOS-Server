@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Prisma } from '../../../generated/prisma/client';
 import { prisma } from '../../config/db';
 import AppError from '../../errors/appError';
@@ -23,6 +24,7 @@ const registerUser = async (user: IUser) => {
   return result;
 };
 
+// ----- Credential login ----- //
 const credentialsLogin = async (payload: Prisma.UserWhereUniqueInput) => {
   const { email, password } = payload;
 
