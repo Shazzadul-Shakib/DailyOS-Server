@@ -15,3 +15,5 @@ userRouter.post(
   validateRequest(UserValidation.createUserValidationSchema),
   userController.registerUser
 );
+userRouter.post('/login', userController.credentialsLogin);
+userRouter.post('/logout', userController.logout);

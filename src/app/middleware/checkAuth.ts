@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import AppError from '../errors/appError';
 import httpStatus from 'http-status';
-import { verifyToken } from '../modules/auth/utils/jwt';
+import { verifyToken } from '../modules/user/utils/jwt';
 import { envConfig } from '../config';
 import { JwtPayload } from 'jsonwebtoken';
 import { prisma } from '../config/db';
