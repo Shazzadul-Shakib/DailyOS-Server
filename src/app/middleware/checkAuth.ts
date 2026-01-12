@@ -24,17 +24,22 @@ export const checkAuth =
         envConfig.jwt.jwt_access_secret as string
       ) as JwtPayload;
 
+      const { email, role } = verifiedToken;
+
       const isUserExist = await prisma.user.findUnique({
         where: {
-          email: verifiedToken.email,
+          email,
         },
+        select: {
+          email: true
+        }
       });
 
       if (!isUserExist) {
         throw new AppError(httpStatus.NOT_FOUND, "User doesn't exists");
       }
 
-      if (!authRoles.includes(verifiedToken.role)) {
+      if (!authRoles.includes(role)) {
         throw new AppError(
           httpStatus.FORBIDDEN,
           'Permission Denied. You are not authorized.'
