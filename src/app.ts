@@ -3,6 +3,7 @@ import cors from 'cors';
 import { appRoutes } from './app/routes';
 import { notFound } from './app/middleware/notFound';
 import { globalErrorHandler } from './app/middleware/globalErrorHandler';
+import cookieParser from 'cookie-parser';
 
 const app: Application = express();
 
@@ -21,7 +22,7 @@ app.use(
     credentials: true,
   })
 );
-// app.use(cookieParser());
+app.use(cookieParser());
 
 // ----- root route ----- //
 app.get('/', (_, res) => {

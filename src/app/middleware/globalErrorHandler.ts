@@ -3,7 +3,7 @@ import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
 import AppError from '../errors/appError';
 import { TError } from '../interfaces/error.interface';
-import { config } from '../config';
+import { envConfig } from '../config';
 import { handleZodError } from '../errors/zodErrorHandler';
 import { handleDuplicateError } from '../errors/duplicateErrorHandler';
 
@@ -43,6 +43,6 @@ export const globalErrorHandler: ErrorRequestHandler = (
     message,
     statusCode,
     error,
-    stack: config.node_env === 'development' ? err?.stack : null,
+    stack: envConfig.node_env === 'development' ? err?.stack : null,
   });
 };
